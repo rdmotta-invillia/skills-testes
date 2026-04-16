@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: RSS Feed Reader Subscription API
+  version: 1.0.0-mvp
+  description: MVP API contract for managing RSS/Atom subscriptions (add + list only).
+servers:
+  - url: http://localhost:5151
+paths:
+  /api/subscriptions:
+    get:
+      summary: List current subscriptions
+      operationId: listSubscriptions
+      tags: [Subscriptions]
+      responses:
+        "200":
+          description: Current list of subscriptions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListSubscriptionsResponse"
+    post:
+      summary: Add a subscription
+      operationId: addSubscription
+      tags: [Subscriptions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddSubscriptionRequest"
+      responses:
+        "201":
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        "400":
+          description: Invalid input (empty/whitespace URL)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Duplicate subscription URL
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    AddSubscriptionRequest:
+      type: object
+      required: [url]
+      properties:
+        url:
+          type: string
+          minLength: 1
+          description: Feed URL entered by user.
+          example: https://devblogs.microsoft.com/dotnet/feed/
+    Subscription:
+      type: object
+      required: [id, url, createdAtUtc]
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
+          type: string
+        createdAtUtc:
+          type: string
+          format: date-time
+    ListSubscriptionsResponse:
+      type: object
+      required: [subscriptions]
+      properties:
+        subscriptions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Subscription"
+    ErrorResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          example: duplicate_subscription
+        message:
+          type: string
+          example: Subscription already exists.
