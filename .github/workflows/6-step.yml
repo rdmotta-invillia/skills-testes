@@ -7,8 +7,6 @@ on:
       - main
     paths:
       - "src/**"
-      - "*.csproj"
-      - "Program.cs"
 
 permissions:
   contents: write
