@@ -1,0 +1,55 @@
+@page "/"
+@using RssReaderClient.Components
+
+<div class="container">
+    <div class="header">
+        <h1>RSS Feed Reader</h1>
+        <p>Simple subscription management for RSS/Atom feeds</p>
+    </div>
+
+    <div class="content">
+        <SubscriptionForm OnSubscriptionAdded="HandleSubscriptionAdded" />
+        <SubscriptionList RefreshTrigger="@refreshTrigger" />
+    </div>
+</div>
+
+@code {
+    private int refreshTrigger = 0;
+
+    private async Task HandleSubscriptionAdded()
+    {
+        // Increment the trigger to notify SubscriptionList to refresh
+        refreshTrigger++;
+        await Task.Delay(500); // Give time for the form to clear
+    }
+}
+
+<style>
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    margin: 0;
+    color: #333;
+}
+
+.header p {
+    margin: 0.5rem 0 0 0;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+</style>
