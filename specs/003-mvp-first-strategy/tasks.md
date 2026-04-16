@@ -177,3 +177,60 @@ Phase 6: Polish & Integration
 - [x] Application runs on localhost (backend and frontend)
 - [x] Manual integration test passes: add subscription → view in list → refresh → list clears
 - [x] MVP requirements from plan.md are satisfied
+
+---
+
+## Extended MVP Tasks (T033-T050)
+
+**Purpose**: Future enhancement phases for advanced features (feed fetching, content display, persistence)
+
+---
+
+## Phase 7: Feed Fetching & Parsing (T033-T040)
+
+**Purpose**: Add capability to fetch and parse RSS/Atom feeds
+
+- [ ] T033 Create `FeedFetcher` service in `src/RssReaderApi/Services/FeedFetcher.cs` to retrieve feed content
+- [ ] T034 Implement HTTP client for fetching feed URLs with timeout and error handling
+- [ ] T035 Create `FeedParser` service in `src/RssReaderApi/Services/FeedParser.cs` to parse RSS/Atom feeds
+- [ ] T036 Add `FeedItem` model in `src/RssReaderApi/Models/FeedItem.cs` for feed entries
+- [ ] T037 Implement endpoint `GET /api/subscriptions/{id}/items` to retrieve parsed feed items
+- [ ] T038 Add feed validation to verify URLs point to valid feeds
+- [ ] T039 Implement feed refresh mechanism with caching strategy
+- [ ] T040 Add error handling for failed feed fetches and parsing errors
+
+---
+
+## Phase 8: Content Display (T041-T045)
+
+**Purpose**: Display feed content in the frontend UI
+
+- [ ] T041 Create `FeedItems.razor` component to display feed entries
+- [ ] T042 Implement item detail view with title, link, and description
+- [ ] T043 Add automatic feed refresh button and manual refresh triggers
+- [ ] T044 Implement pagination or infinite scroll for large feeds
+- [ ] T045 Add styling for feed items and improved UI layout
+
+---
+
+## Phase 9: Persistent Storage (T046-T050)
+
+**Purpose**: Add database persistence to replace in-memory storage
+
+- [ ] T046 Set up Entity Framework Core with SQL Server or SQLite
+- [ ] T047 Create database models and migrations for Subscription and FeedItem
+- [ ] T048 Replace `SubscriptionService` in-memory storage with EF Core context
+- [ ] T049 Implement subscription persistence and retrieval from database
+- [ ] T050 Add database seeding for demo data and migrations documentation
+
+---
+
+## Extended MVP Completion Checklist
+
+- [ ] All Feed Fetching tasks (T033-T040) implemented
+- [ ] All Content Display tasks (T041-T045) implemented
+- [ ] All Persistence tasks (T046-T050) implemented
+- [ ] Extended MVP builds without errors
+- [ ] Feed fetching tested with real RSS feeds
+- [ ] Database migrations and seeding working
+- [ ] Extended MVP requirements satisfied
