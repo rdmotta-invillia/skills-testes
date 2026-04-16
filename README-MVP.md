@@ -5,6 +5,7 @@ A simple proof-of-concept RSS/Atom feed reader application for managing feed sub
 ## Overview
 
 The RSS Feed Reader MVP is a web application built with:
+
 - **Backend**: ASP.NET Core Web API with in-memory subscription storage
 - **Frontend**: Blazor WebAssembly with interactive UI components
 - **Storage**: Session-based in-memory storage (subscriptions cleared on app restart)
@@ -56,11 +57,13 @@ src/
 ### API Endpoints
 
 #### Get All Subscriptions
+
 ```http
 GET /api/subscriptions
 ```
 
 **Response**: `200 OK`
+
 ```json
 [
   { "id": "1", "url": "https://example.com/feed.rss" },
@@ -69,6 +72,7 @@ GET /api/subscriptions
 ```
 
 #### Add a Subscription
+
 ```http
 POST /api/subscriptions
 Content-Type: application/json
@@ -77,6 +81,7 @@ Content-Type: application/json
 ```
 
 **Response**: `201 Created`
+
 ```json
 { "id": "3", "url": "https://example.com/feed.rss" }
 ```
@@ -91,11 +96,13 @@ Content-Type: application/json
 ### Building the Application
 
 1. **Clone the repository** (if applicable)
+
    ```bash
    cd skills-testes
    ```
 
 2. **Build the solution**
+
    ```bash
    cd src
    dotnet build
@@ -110,23 +117,28 @@ Content-Type: application/json
 #### Option 1: Run Both Services from IDE/Terminal
 
 1. **Start the Backend API** (in Terminal 1)
+
    ```bash
    cd src/RssReaderApi
    dotnet run
    ```
+
    The API will start on `https://localhost:7215` (HTTPS) or `http://localhost:5215` (HTTP)
 
 2. **Start the Frontend** (in Terminal 2)
+
    ```bash
    cd src/RssReaderClient
    dotnet run
    ```
+
    The frontend will start on `https://localhost:7296` (HTTPS) or `http://localhost:5296` (HTTP)
 
 3. **Open in Browser**
    Navigate to `https://localhost:7296` or `http://localhost:5296` (depending on which port your WASM app is running on)
 
 #### Option 2: Run from Solution
+
 ```bash
 cd src
 dotnet run --project RssReaderApi/RssReaderApi.csproj &
@@ -226,6 +238,7 @@ The MVP uses in-memory storage for subscriptions. This means:
 ### "Connection refused" Error
 
 If you see connection errors:
+
 1. Verify the backend API is running: `https://localhost:7215`
 2. Verify the frontend is running: `https://localhost:7296`
 3. Check that the base address in `RssReaderClient/Program.cs` matches your backend URL
@@ -233,6 +246,7 @@ If you see connection errors:
 ### Build Errors
 
 If the build fails:
+
 1. Ensure .NET SDK 8.0 or later is installed: `dotnet --version`
 2. Restore NuGet packages: `dotnet restore`
 3. Clean and rebuild: `dotnet clean && dotnet build`
@@ -240,6 +254,7 @@ If the build fails:
 ### CORS Errors
 
 If you see CORS errors in the browser console:
+
 1. Ensure the frontend URL is added to the CORS policy in `RssReaderApi/Program.cs`
 2. The CORS policy should allow the Blazor frontend's origin
 
