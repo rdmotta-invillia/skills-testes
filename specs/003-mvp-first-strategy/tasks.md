@@ -35,11 +35,11 @@ description: "Task list for RSS Feed Reader MVP feature implementation"
 
 **Purpose**: Project initialization and basic solution structure
 
-- [ ] T001 Create ASP.NET Core solution with two projects in `src/RssReaderApi.sln`
-- [ ] T002 [P] Create ASP.NET Core Web API project at `src/RssReaderApi/RssReaderApi.csproj` with required dependencies
-- [ ] T003 [P] Create Blazor WebAssembly project at `src/RssReaderClient/RssReaderClient.csproj` with required dependencies
-- [ ] T004 Create main entry point and host configuration in `src/RssReaderApi/Program.cs`
-- [ ] T005 Configure Blazor WASM app initialization in `src/RssReaderClient/Program.cs`
+- [X] T001 Create ASP.NET Core solution with two projects in `src/RssReaderApi.sln`
+- [X] T002 [P] Create ASP.NET Core Web API project at `src/RssReaderApi/RssReaderApi.csproj` with required dependencies
+- [X] T003 [P] Create Blazor WebAssembly project at `src/RssReaderClient/RssReaderClient.csproj` with required dependencies
+- [X] T004 Create main entry point and host configuration in `src/RssReaderApi/Program.cs`
+- [X] T005 Configure Blazor WASM app initialization in `src/RssReaderClient/Program.cs`
 
 ---
 
@@ -49,13 +49,13 @@ description: "Task list for RSS Feed Reader MVP feature implementation"
 
 **Blocking Dependencies**: All Phase 1 tasks
 
-- [ ] T006 Create `Subscription` model class in `src/RssReaderApi/Models/Subscription.cs` with Id and Url properties
-- [ ] T007 Create `SubscriptionService` in-memory service in `src/RssReaderApi/Services/SubscriptionService.cs` with methods: GetAll(), AddSubscription(url)
-- [ ] T008 Register `SubscriptionService` in dependency injection container in `src/RssReaderApi/Program.cs`
-- [ ] T009 Create `SubscriptionsController` in `src/RssReaderApi/Controllers/SubscriptionsController.cs` with GET and POST endpoints
-- [ ] T010 Implement `GET /api/subscriptions` endpoint to return all subscriptions in `src/RssReaderApi/Controllers/SubscriptionsController.cs`
-- [ ] T011 Implement `POST /api/subscriptions` endpoint to add a new subscription in `src/RssReaderApi/Controllers/SubscriptionsController.cs`
-- [ ] T012 Configure CORS policy in `src/RssReaderApi/Program.cs` to allow Blazor frontend requests
+- [X] T006 Create `Subscription` model class in `src/RssReaderApi/Models/Subscription.cs` with Id and Url properties
+- [X] T007 Create `SubscriptionService` in-memory service in `src/RssReaderApi/Services/SubscriptionService.cs` with methods: GetAll(), AddSubscription(url)
+- [X] T008 Register `SubscriptionService` in dependency injection container in `src/RssReaderApi/Program.cs`
+- [X] T009 Create `SubscriptionsController` in `src/RssReaderApi/Controllers/SubscriptionsController.cs` with GET and POST endpoints
+- [X] T010 Implement `GET /api/subscriptions` endpoint to return all subscriptions in `src/RssReaderApi/Controllers/SubscriptionsController.cs`
+- [X] T011 Implement `POST /api/subscriptions` endpoint to add a new subscription in `src/RssReaderApi/Controllers/SubscriptionsController.cs`
+- [X] T012 Configure CORS policy in `src/RssReaderApi/Program.cs` to allow Blazor frontend requests
 
 ---
 
@@ -74,11 +74,11 @@ description: "Task list for RSS Feed Reader MVP feature implementation"
 
 **Blocking Dependencies**: All Phase 2 tasks
 
-- [ ] T013 [P] [US1] Create `SubscriptionForm.razor` component in `src/RssReaderClient/Components/SubscriptionForm.razor` with URL input field and Add button
-- [ ] T014 [US1] Implement form submission logic in `src/RssReaderClient/Components/SubscriptionForm.razor` to POST to `/api/subscriptions`
-- [ ] T015 [P] [US1] Implement HTTP client injection and API call method in `src/RssReaderClient/Components/SubscriptionForm.razor`
-- [ ] T016 [US1] Add form validation feedback in `src/RssReaderClient/Components/SubscriptionForm.razor` (e.g., error messages on failed submission)
-- [ ] T017 [US1] Emit event or callback from `SubscriptionForm.razor` to notify parent when subscription is successfully added
+- [X] T013 [P] [US1] Create `SubscriptionForm.razor` component in `src/RssReaderClient/Components/SubscriptionForm.razor` with URL input field and Add button
+- [X] T014 [US1] Implement form submission logic in `src/RssReaderClient/Components/SubscriptionForm.razor` to POST to `/api/subscriptions`
+- [X] T015 [P] [US1] Implement HTTP client injection and API call method in `src/RssReaderClient/Components/SubscriptionForm.razor`
+- [X] T016 [US1] Add form validation feedback in `src/RssReaderClient/Components/SubscriptionForm.razor` (e.g., error messages on failed submission)
+- [X] T017 [US1] Emit event or callback from `SubscriptionForm.razor` to notify parent when subscription is successfully added
 
 ---
 
@@ -97,12 +97,12 @@ description: "Task list for RSS Feed Reader MVP feature implementation"
 
 **Blocking Dependencies**: All Phase 2 tasks; Phase 3 tasks (can run in parallel with Phase 3)
 
-- [ ] T018 [P] [US2] Create `SubscriptionList.razor` component in `src/RssReaderClient/Components/SubscriptionList.razor` to display subscriptions
-- [ ] T019 [P] [US2] Implement HTTP GET call to `/api/subscriptions` in `src/RssReaderClient/Components/SubscriptionList.razor`
-- [ ] T020 [P] [US2] Add markup to display subscription list with foreach loop in `src/RssReaderClient/Components/SubscriptionList.razor`
-- [ ] T021 [US2] Implement empty state display in `src/RssReaderClient/Components/SubscriptionList.razor` when no subscriptions exist
-- [ ] T022 [P] [US2] Create `Index.razor` page in `src/RssReaderClient/Pages/Index.razor` to orchestrate SubscriptionForm and SubscriptionList components
-- [ ] T023 [US2] Implement data refresh mechanism in `Index.razor` to reload subscriptions after new subscription is added (subscribe to SubscriptionForm events)
+- [X] T018 [P] [US2] Create `SubscriptionList.razor` component in `src/RssReaderClient/Components/SubscriptionList.razor` to display subscriptions
+- [X] T019 [P] [US2] Implement HTTP GET call to `/api/subscriptions` in `src/RssReaderClient/Components/SubscriptionList.razor`
+- [X] T020 [P] [US2] Add markup to display subscription list with foreach loop in `src/RssReaderClient/Components/SubscriptionList.razor`
+- [X] T021 [US2] Implement empty state display in `src/RssReaderClient/Components/SubscriptionList.razor` when no subscriptions exist
+- [X] T022 [P] [US2] Create `Index.razor` page in `src/RssReaderClient/Pages/Index.razor` to orchestrate SubscriptionForm and SubscriptionList components
+- [X] T023 [US2] Implement data refresh mechanism in `Index.razor` to reload subscriptions after new subscription is added (subscribe to SubscriptionForm events)
 
 ---
 
@@ -122,10 +122,10 @@ description: "Task list for RSS Feed Reader MVP feature implementation"
 
 **Note**: This is mainly a validation phase; the storage mechanism is built into Phase 2. This phase documents the behavior and performs integration testing.
 
-- [ ] T024 [US3] Perform manual integration test: Add multiple subscriptions via the UI and verify all are displayed
-- [ ] T025 [US3] Perform manual integration test: Refresh the browser page and verify subscriptions are gone (confirming in-memory storage)
-- [ ] T026 [US3] Verify `SubscriptionService` maintains state across multiple API calls within a session in `src/RssReaderApi/Services/SubscriptionService.cs`
-- [ ] T027 [US3] Document expected behavior of in-memory storage in code comments and README
+- [X] T024 [US3] Perform manual integration test: Add multiple subscriptions via the UI and verify all are displayed
+- [X] T025 [US3] Perform manual integration test: Refresh the browser page and verify subscriptions are gone (confirming in-memory storage)
+- [X] T026 [US3] Verify `SubscriptionService` maintains state across multiple API calls within a session in `src/RssReaderApi/Services/SubscriptionService.cs`
+- [X] T027 [US3] Document expected behavior of in-memory storage in code comments and README
 
 ---
 
@@ -133,11 +133,11 @@ description: "Task list for RSS Feed Reader MVP feature implementation"
 
 **Purpose**: Verification, documentation, and final cleanup
 
-- [ ] T028 Create `README.md` with instructions to build and run the application
-- [ ] T029 [P] Add basic styling to `Index.razor` for improved UI appearance
-- [ ] T030 [P] Add input validation in `SubscriptionForm.razor` to prevent empty URLs
-- [ ] T031 Test application end-to-end: start backend, start frontend, add subscription, refresh, verify behavior
-- [ ] T032 Clean up any console logs or debug code from production builds
+- [X] T028 Create `README.md` with instructions to build and run the application
+- [X] T029 [P] Add basic styling to `Index.razor` for improved UI appearance
+- [X] T030 [P] Add input validation in `SubscriptionForm.razor` to prevent empty URLs
+- [X] T031 Test application end-to-end: start backend, start frontend, add subscription, refresh, verify behavior
+- [X] T032 Clean up any console logs or debug code from production builds
 
 ---
 
@@ -167,13 +167,13 @@ Phase 6: Polish & Integration
 
 ## Completion Checklist
 
-- [ ] All Setup tasks (T001-T005) are green
-- [ ] All Foundational tasks (T006-T012) are green
-- [ ] All US1 tasks (T013-T017) are green
-- [ ] All US2 tasks (T018-T023) are green
-- [ ] All US3 tasks (T024-T027) are green
-- [ ] All Polish tasks (T028-T032) are green
-- [ ] Application builds successfully without errors
-- [ ] Application runs on localhost (backend and frontend)
-- [ ] Manual integration test passes: add subscription → view in list → refresh → list clears
-- [ ] MVP requirements from plan.md are satisfied
+- [X] All Setup tasks (T001-T005) are green
+- [X] All Foundational tasks (T006-T012) are green
+- [X] All US1 tasks (T013-T017) are green
+- [X] All US2 tasks (T018-T023) are green
+- [X] All US3 tasks (T024-T027) are green
+- [X] All Polish tasks (T028-T032) are green
+- [X] Application builds successfully without errors
+- [X] Application runs on localhost (backend and frontend)
+- [X] Manual integration test passes: add subscription → view in list → refresh → list clears
+- [X] MVP requirements from plan.md are satisfied

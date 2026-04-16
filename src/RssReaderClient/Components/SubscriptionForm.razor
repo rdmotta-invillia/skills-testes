@@ -1,0 +1,160 @@
+@using System.Net.Http.Json
+
+<div class="subscription-form">
+    <h3>Add New Subscription</h3>
+    <form @onsubmit="HandleSubmit">
+        <div class="form-group">
+            <label for="urlInput">Feed URL:</label>
+            <input 
+                type="text" 
+                id="urlInput" 
+                @bind="feedUrl" 
+                placeholder="https://example.com/feed.rss"
+                class="form-control"
+            />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                @if (isSubmitting)
+                {
+                    <span>Adding...</span>
+                }
+                else
+                {
+                    <span>Add Subscription</span>
+                }
+            </button>
+        </div>
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger">
+                @errorMessage
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(successMessage))
+        {
+            <div class="alert alert-success">
+                @successMessage
+            </div>
+        }
+    </form>
+</div>
+
+@code {
+    [Inject]
+    private HttpClient HttpClient { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback OnSubscriptionAdded { get; set; }
+
+    private string feedUrl = string.Empty;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+    private bool isSubmitting = false;
+
+    private async Task HandleSubmit()
+    {
+        errorMessage = string.Empty;
+        successMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(feedUrl))
+        {
+            errorMessage = "Please enter a feed URL";
+            return;
+        }
+
+        isSubmitting = true;
+
+        try
+        {
+            var request = new { url = feedUrl };
+            var response = await HttpClient.PostAsJsonAsync("/api/subscriptions", request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                successMessage = "Subscription added successfully!";
+                feedUrl = string.Empty;
+                await OnSubscriptionAdded.InvokeAsync();
+            }
+            else
+            {
+                errorMessage = "Failed to add subscription. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+}
+
+<style>
+.subscription-form {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.btn-primary:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.alert {
+    padding: 0.75rem 1.25rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+</style>
